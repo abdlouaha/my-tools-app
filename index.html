@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="موقع الأدوات المجانية يقدم أدوات عملية تسهل حياتك اليومية.">
+  <meta name="author" content="تواتي عبد الوهاب">
+  <meta name="keywords" content="أدوات مجانية, محول العملات, حاسبة BMI, توليد كلمات مرور, إدارة المهام">
+  <meta name="theme-color" content="#3498db">
+  <link rel="manifest" href="/manifest.json">
+  <title>موقع الأدوات المجانية</title>
+  <!-- إضافة Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- ربط ملف CSS -->
+  <link rel="stylesheet" href="style.css">
+  <!-- إضافة خط Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_TRACKING_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'YOUR_TRACKING_ID');
+  </script>
+</head>
+<body onload="showProgress()">
+  <!-- شريط التقدم -->
+  <div id="progress-bar" style="width: 0%; height: 5px; background-color: #ff6f61;"></div>
+
+  <!-- زر الإعدادات -->
+  <button id="settings-toggle" onclick="toggleSettings()" class="settings-button">
+    <i class="fas fa-cog fa-spin"></i>
+  </button>
+
+  <!-- شريط الإعدادات (مخفي افتراضيًا) -->
+  <div class="settings-panel" id="settings-panel">
+    <div class="settings-header">
+      <h3>الإعدادات</h3>
+    </div>
+    <div class="settings-body">
+      <button onclick="toggleDarkMode()"><i class="fas fa-moon"></i> الوضع الليلي</button>
+      <select id="language-selector" onchange="changeLanguage()">
+        <option value="ar">العربية</option>
+        <option value="en">English</option>
+      </select>
+      <button onclick="changeThemeColor('#3498db')">الأزرق</button>
+      <button onclick="changeThemeColor('#2ecc71')">الأخضر</button>
+      <button onclick="changeThemeColor('#f1c40f')">الأصفر</button>
+      <button onclick="login()">تسجيل الدخول</button>
+    </div>
+  </div>
+
+  <!-- رأس الصفحة -->
+  <header>
+    <div class="header-content">
+      <h1><i class="fas fa-tools"></i> موقع الأدوات المجانية</h1>
+      <nav>
+        <ul>
+          <li><a href="#tools">الأدوات</a></li>
+          <li><a href="#about">عن الموقع</a></li>
+          <li><a href="#contact">تواصل معنا</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- قسم الأدوات -->
+  <section id="tools">
+    <h2>اختيار الأدوات</h2>
+    <div class="tool-list">
+      <button onclick="showTool('currency')">
+        <i class="fas fa-dollar-sign" style="color: #ffcc00;"></i> محول العملات
+      </button>
+      <button onclick="showTool('bmi')">
+        <i class="fas fa-weight" style="color: #3498db;"></i> حاسبة BMI
+      </button>
+      <button onclick="showTool('unit')">
+        <i class="fas fa-balance-scale" style="color: #e74c3c;"></i> محول الوحدات
+      </button>
+      <button onclick="showTool('word-counter')">
+        <i class="fas fa-font" style="color: #2ecc71;"></i> عداد الكلمات
+      </button>
+      <button onclick="showTool('password-generator')">
+        <i class="fas fa-key" style="color: #9b59b6;"></i> توليد كلمات مرور
+      </button>
+      <button onclick="showTool('todo')">
+        <i class="fas fa-tasks" style="color: #f1c40f;"></i> إدارة المهام
+      </button>
+    </div>
+
+    <!-- منطقة عرض الأدوات -->
+    <div id="tool-container"></div>
+  </section>
+
+  <!-- قسم "عن الموقع" -->
+  <section id="about">
+    <h2>عن الموقع</h2>
+    <p>هذا الموقع يقدم مجموعة من الأدوات المجانية لتسهيل حياتك اليومية. تم تطويره بواسطة <strong>تواتي عبد الوهاب</strong>.</p>
+    <button onclick="showTutorial()">دليل الاستخدام</button>
+  </section>
+
+  <!-- قسم "تواصل معنا" -->
+  <section id="contact">
+    <h2>تواصل معنا</h2>
+    <form id="contact-form">
+      <div class="input-group">
+        <i class="fas fa-user" style="color: #ffcc00;"></i>
+        <input type="text" placeholder="اسمك" required>
+      </div>
+      <div class="input-group">
+        <i class="fas fa-envelope" style="color: #3498db;"></i>
+        <input type="email" placeholder="بريدك الإلكتروني" required>
+      </div>
+      <div class="input-group">
+        <i class="fas fa-comment" style="color: #e74c3c;"></i>
+        <textarea placeholder="رسالتك" required></textarea>
+      </div>
+      <button type="submit"><i class="fas fa-paper-plane" style="color: #fff;"></i> إرسال</button>
+    </form>
+    <p class="contact-info">
+      <i class="fas fa-envelope" style="color: #3498db;"></i> البريد الإلكتروني: <a href="mailto:ww8292261@gmail.com">ww8292261@gmail.com</a><br>
+      <i class="fas fa-user" style="color: #ffcc00;"></i> المطور: تواتي عبد الوهاب
+    </p>
+  </section>
+
+  <!-- تذييل الصفحة -->
+  <footer>
+    <p>&copy; 2023 موقع الأدوات المجانية. جميع الحقوق محفوظة.</p>
+    <button onclick="shareTool()">مشاركة الموقع</button>
+    <button onclick="showAffiliateAd()">شراء منتج موصى به</button>
+  </footer>
+
+  <!-- ربط ملف JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
